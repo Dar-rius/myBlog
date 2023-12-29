@@ -1,0 +1,14 @@
+{
+  "name": "myBlog",
+  "version": "0.0.1",
+  "description": "It's just a blog",
+  "repository": "https://github.com/Dar-rius/myBlog.git",
+  "author": "darrius <mohamedtine17@gmail.com>",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}
