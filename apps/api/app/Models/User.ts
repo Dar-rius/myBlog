@@ -4,6 +4,8 @@ import Hash from '@ioc:Adonis/Core/Hash'
 import Blog from './Blog'
 
 export default class User extends BaseModel {
+  public static table = 'user'
+
   @column({ isPrimary: true })
   public id: number
 
