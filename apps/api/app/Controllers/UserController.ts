@@ -1,0 +1,39 @@
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import User from '../Models/User'
+import { checkPassword } from './utils'
+
+export default class UserController {
+  // method to create and login user
+  public async register(ctx: HttpContextContract) {
+    const data = ctx.request.body()
+    checkPassword(data.password, data.password_2)
+    try {
+      const user = await User.create(data)
+      await ctx.auth.use('api').login(user)
+      ctx.response.ok({ message: 'Success' })
+    } catch {
+      ctx.response.badRequest({ message: 'User not authentificated' })
+    }
+  }
+
+  // method to verify if user exist and authentificated user
+  public async login(ctx: HttpContextContract) {
+    const { email, password } = ctx.request.body()
+    await ctx.auth.use('api').attempt(email, password)
+    if (ctx.auth.use('api').isAuthenticated) {
+      ctx.response.ok({ message: 'Success' })
+    } else {
+      ctx.response.badRequest({ message: 'User not authentificated' })
+    }
+  }
+
+  // method to logout user
+  public async lougout(ctx: HttpContextContract) {
+    if (ctx.auth.use('api').isAuthenticated) {
+      ctx.auth.use('api').logout()
+      ctx.response.ok({ message: 'user is deconnected' })
+    } else {
+      ctx.response.badRequest({ message: 'failed' })
+    }
+  }
+}
