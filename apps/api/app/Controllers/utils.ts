@@ -6,7 +6,7 @@ export function checkPassword(password_1: string, password_2: string): boolean {
   if (password_1 === password_2) {
     return true
   } else {
-    return false
+    throw false
   }
 }
 

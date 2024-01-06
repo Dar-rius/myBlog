@@ -5,10 +5,10 @@ test.group('User tests for the success', () => {
   // Write your test here
   test('create user and logged', async ({ client }) => {
     const response = await client.post('/signup').json({
-      username: 'Alou',
-      email: 'alou@gmail.com',
-      passsword: '@test@',
-      passsword_2: '@test@',
+      username: 'Abou',
+      email: 'abou@gmail.com',
+      password: '@32test32@',
+      password_2: '@32test32@',
     })
     response.assertStatus(200)
     response.assertBody({ message: 'Success' })

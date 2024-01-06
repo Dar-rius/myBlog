@@ -5,10 +5,15 @@ import { checkPassword } from './utils'
 export default class UserController {
   // method to create and login user
   public async register(ctx: HttpContextContract) {
-    const data = ctx.request.body()
-    checkPassword(data.password, data.password_2)
+    const { username, email, password, password_2 } = ctx.request.body()
+    console.log(username)
     try {
-      const user = await User.create(data)
+      checkPassword(password, password_2)
+      const user = await User.create({
+        username: username,
+        email: email,
+        password: password,
+      })
       await ctx.auth.use('api').login(user)
       ctx.response.ok({ message: 'Success' })
     } catch {
