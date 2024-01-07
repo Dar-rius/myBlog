@@ -6,7 +6,7 @@ export default class UserController {
   // method to create and login user
   public async register(ctx: HttpContextContract) {
     const { username, email, password, password_2 } = ctx.request.body()
-    console.log(username)
+    console.log(username, email, password, password_2)
     try {
       checkPassword(password, password_2)
       const user = await User.create({
@@ -24,16 +24,16 @@ export default class UserController {
   // method to verify if user exist and authentificated user
   public async login(ctx: HttpContextContract) {
     const { email, password } = ctx.request.body()
-    await ctx.auth.use('api').attempt(email, password)
-    if (ctx.auth.use('api').isAuthenticated) {
+    try {
+      await ctx.auth.use('api').attempt(email, password)
       ctx.response.ok({ message: 'Success' })
-    } else {
+    } catch {
       ctx.response.badRequest({ message: 'User not authentificated' })
     }
   }
 
   // method to logout user
-  public async lougout(ctx: HttpContextContract) {
+  public async logout(ctx: HttpContextContract) {
     if (ctx.auth.use('api').isAuthenticated) {
       ctx.auth.use('api').logout()
       ctx.response.ok({ message: 'user is deconnected' })
