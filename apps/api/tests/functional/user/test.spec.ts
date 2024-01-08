@@ -84,4 +84,12 @@ test.group('User tests for the success', () => {
     response.assertStatus(200)
     response.assertBody({ message: 'Success' })
   })
+
+  test('delete blog', async ({ client }) => {
+    const user = User.find(1)
+    const response = await client.delete('/delete-blog/1').guard('api').loginAs(user)
+
+    response.assertStatus(200)
+    response.assertBody({ message: 'Success' })
+  })
 })

@@ -14,5 +14,5 @@ Route.group(() => {
     Route.post('/create-blog', 'BlogController.createBlog').middleware('auth:api'),
     Route.put('/edit-blog-metadata/:id', 'BlogController.updateMetaData').middleware('auth:api'),
     Route.put('/edit-blog-file/:id', 'BlogController.updateFile').middleware('auth:api'),
-    Route.delete('/delete-blog/:id', 'BlogController.delete').middleware('auth:api')
+    Route.delete('/delete-blog/:id', 'BlogController.deleteBlog').middleware('auth:api')
 }).namespace('App/Controllers')

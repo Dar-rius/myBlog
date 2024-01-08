@@ -33,7 +33,7 @@ export default class BlogController {
         title: title,
         label: label,
         preface: preface,
-        content: fileMK?.filePath,
+        content: fileMK?.fileName,
       })
       ctx.response.ok({ message: 'Success' })
     } catch {
@@ -62,7 +62,7 @@ export default class BlogController {
       const blog = await Blog.findOrFail(idBlog)
       await changeFile(fileMK)
       console.log(idBlog, fileMK?.fileName)
-      blog.content = fileMK?.filePath
+      blog.content = fileMK?.fileName
       blog.save()
       ctx.response.ok({ message: 'Success' })
     } catch {
@@ -77,9 +77,9 @@ export default class BlogController {
       const blog = await Blog.findOrFail(idBlog)
       await Drive.delete(blog.content)
       await blog.delete()
-      ctx.response.ok({ message: 'success' })
+      ctx.response.ok({ message: 'Success' })
     } catch {
-      ctx.response.badRequest({ message: 'failed' })
+      ctx.response.badRequest({ message: 'Failed' })
     }
   }
 }
