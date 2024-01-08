@@ -5,6 +5,8 @@ import { file } from '@ioc:Adonis/Core/Helpers'
 
 test.group('User tests for the success', () => {
   // Write your test here
+
+  // test to create and log user
   test('create user and logged', async ({ client }) => {
     const response = await client.post('/signup').json({
       username: 'Alou',
@@ -16,6 +18,7 @@ test.group('User tests for the success', () => {
     response.assertBody({ message: 'Success' })
   })
 
+  //Test to logout user
   test('logout user', async ({ client }) => {
     const user = await User.findOrFail(1)
     const response = await client.get('/logout').guard('api').loginAs(user)

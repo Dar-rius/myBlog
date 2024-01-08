@@ -9,8 +9,10 @@ Route.group(() => {
 
 // Route group for blog
 Route.group(() => {
+  //Routes don't require auth
   Route.get('/all-blog', 'BlogController.index'),
     Route.get('/blog/:id', 'BlogController.getBlog'),
+    //Routes require auth
     Route.post('/create-blog', 'BlogController.createBlog').middleware('auth:api'),
     Route.put('/edit-blog-metadata/:id', 'BlogController.updateMetaData').middleware('auth:api'),
     Route.put('/edit-blog-file/:id', 'BlogController.updateFile').middleware('auth:api'),

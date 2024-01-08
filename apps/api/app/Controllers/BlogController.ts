@@ -7,7 +7,7 @@ export default class BlogController {
   // method to display all blog
   public async index(ctx: HttpContextContract) {
     const blogs = await Blog.all()
-    ctx.response.send(blogs)
+    ctx.response.ok(blogs)
   }
 
   // method to get one blog
@@ -61,7 +61,6 @@ export default class BlogController {
     try {
       const blog = await Blog.findOrFail(idBlog)
       await changeFile(fileMK)
-      console.log(idBlog, fileMK?.fileName)
       blog.content = fileMK?.fileName
       blog.save()
       ctx.response.ok({ message: 'Success' })
