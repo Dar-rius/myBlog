@@ -20,11 +20,9 @@ export async function saveFile(file: any) {
   }
 }
 
-// Function to delete a old file and save new file
-// then update blog
+// Function to change file with same name
 export async function changeFile(file: any) {
   if (file) {
-    await Drive.delete(file.fileName)
     await file.move(Application.tmpPath('uploads'))
     return true
   } else {

@@ -6,7 +6,6 @@ export default class UserController {
   // method to create and login user
   public async register(ctx: HttpContextContract) {
     const { username, email, password, password_2 } = ctx.request.body()
-    console.log(username, email, password, password_2)
     try {
       checkPassword(password, password_2)
       const user = await User.create({

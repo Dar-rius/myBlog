@@ -28,7 +28,6 @@ export default class BlogController {
     const fileMK = ctx.request.file('content')
     try {
       await saveFile(fileMK)
-      console.log(user.id, title, label, preface, fileMK?.fileName)
       await Blog.create({
         author_id: user.id,
         title: title,
@@ -43,23 +42,31 @@ export default class BlogController {
   }
 
   // method to edit blog
-  public async updateBlog(ctx: HttpContextContract) {
+  public async updateMetaData(ctx: HttpContextContract) {
     const idBlog = ctx.request.param('id')
-    const { title, label, preface } = ctx.request.body()
+    const body = ctx.request.body()
+    try {
+      const blog = await Blog.findOrFail(idBlog)
+      blog.merge(body).save()
+      ctx.response.ok({ message: 'Success' })
+    } catch {
+      ctx.response.badRequest({ message: 'updated data failed' })
+    }
+  }
+
+  // method to edit blog
+  public async updateFile(ctx: HttpContextContract) {
+    const idBlog = ctx.request.param('id')
     const fileMK = ctx.request.file('content')
     try {
       const blog = await Blog.findOrFail(idBlog)
-      changeFile(fileMK)
-      blog
-        .merge({
-          title: title,
-          label: label,
-          preface: preface,
-          content: fileMK?.filePath,
-        })
-        .save()
+      await changeFile(fileMK)
+      console.log(idBlog, fileMK?.fileName)
+      blog.content = fileMK?.filePath
+      blog.save()
+      ctx.response.ok({ message: 'Success' })
     } catch {
-      ctx.response.badRequest({ message: 'updated data failed' })
+      ctx.response.badRequest({ message: 'Failed' })
     }
   }
 

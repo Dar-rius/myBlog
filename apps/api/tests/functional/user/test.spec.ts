@@ -2,7 +2,6 @@ import { test } from '@japa/runner'
 import User from '../../../app/Models/User'
 import Drive from '@ioc:Adonis/Core/Drive'
 import { file } from '@ioc:Adonis/Core/Helpers'
-import Env from '@ioc:Adonis/Core/Env'
 
 test.group('User tests for the success', () => {
   // Write your test here
@@ -35,8 +34,9 @@ test.group('User tests for the success', () => {
 
   test('create blog', async ({ client, assert }) => {
     const user = User.find(1)
-    const drive = Drive.fake()
-    const fileTest = await file.generatePdf('1mb')
+    //const drive = Drive.fake()
+    const fileTest = await file.generatePdf('1mb', 'test')
+
     const response = await client
       .post('/create-blog')
       .fields({
@@ -48,7 +48,39 @@ test.group('User tests for the success', () => {
       .guard('api')
       .loginAs(user)
     //assert.isTrue(await drive.exists(fileTest.name))
-    //Drive.restore()
+    //
+    Drive.restore()
+    response.assertStatus(200)
+    response.assertBody({ message: 'Success' })
+  })
+
+  test('update blog metadata', async ({ client }) => {
+    const user = User.find(1)
+
+    const response = await client
+      .put('/edit-blog-metadata/1')
+      .fields({
+        title: 'hoo merde',
+        label: 'pass test',
+        preface: 'Je meurt',
+      })
+      .guard('api')
+      .loginAs(user)
+
+    response.assertStatus(200)
+    response.assertBody({ message: 'Success' })
+  })
+
+  test('update blog file', async ({ client }) => {
+    const user = User.find(1)
+    const fileTest = await file.generatePdf('1mb', 'test')
+
+    const response = await client
+      .put('/edit-blog-file/1')
+      .file('content', fileTest.contents, { filename: fileTest.name })
+      .guard('api')
+      .loginAs(user)
+
     response.assertStatus(200)
     response.assertBody({ message: 'Success' })
   })
