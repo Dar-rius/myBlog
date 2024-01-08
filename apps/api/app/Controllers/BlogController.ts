@@ -27,7 +27,8 @@ export default class BlogController {
     const user = ctx.auth.user
     const fileMK = ctx.request.file('content')
     try {
-      saveFile(fileMK)
+      await saveFile(fileMK)
+      console.log(user.id, title, label, preface, fileMK?.fileName)
       await Blog.create({
         author_id: user.id,
         title: title,

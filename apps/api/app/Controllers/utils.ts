@@ -16,7 +16,7 @@ export async function saveFile(file: any) {
     await file.move(Application.tmpPath('uploads'))
     return true
   } else {
-    throw false
+    return false
   }
 }
 
