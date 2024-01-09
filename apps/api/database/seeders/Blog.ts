@@ -17,14 +17,14 @@ export default class extends BaseSeeder {
         title: 'test',
         label: 'test',
         preface: 'test',
-        content: 'test',
+        content: 'moh',
       },
       {
         author_id: 1,
         title: 'test',
         label: 'test',
         preface: 'test',
-        content: 'test',
+        content: 'moh',
       },
     ])
   }

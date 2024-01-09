@@ -16,6 +16,7 @@ export default class BlogController {
     const idBlog = ctx.request.param('id')
     try {
       const blog = await Blog.findOrFail(idBlog)
+      blog.content = await Drive.getUrl(blog.content)
       ctx.response.ok(blog)
     } catch {
       ctx.response.badRequest({ message: "blog don't found" })
