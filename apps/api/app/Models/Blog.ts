@@ -28,9 +28,9 @@ export default class Blog extends BaseModel {
   @column()
   public content: string
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.date({ autoCreate: true, autoUpdate: true })
   public updated_at: DateTime
 
-  @column.dateTime({ autoCreate: true })
+  @column.date({ autoCreate: true })
   public created_at: DateTime
 }

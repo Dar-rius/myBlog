@@ -23,7 +23,7 @@ export default class User extends BaseModel {
   })
   public user: HasMany<typeof Blog>
 
-  @column.dateTime({ autoCreate: true })
+  @column.date({ autoCreate: true })
   public created_at: DateTime
 
   @beforeSave()
