@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Blog from '../Models/Blog'
 import { saveFile, changeFile } from './utils'
 import Drive from '@ioc:Adonis/Core/Drive'
+import BlogCreateValidator from '../Validators/BlogCreateValidator'
 
 export default class BlogController {
   // method to display all blog
@@ -27,6 +28,7 @@ export default class BlogController {
     const user = ctx.auth.user
     const fileMK = ctx.request.file('content')
     try {
+      await ctx.request.validate(BlogCreateValidator)
       await saveFile(fileMK)
       await Blog.create({
         author_id: user.id,

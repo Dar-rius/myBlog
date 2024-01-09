@@ -1,12 +1,14 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from '../Models/User'
 import { checkPassword } from './utils'
+import UserCreateValidator from '../Validators/UserCreateValidator'
 
 export default class UserController {
   // method to create and login user
   public async register(ctx: HttpContextContract) {
     const { username, email, password, password_2 } = ctx.request.body()
     try {
+      await ctx.request.validate(UserCreateValidator)
       checkPassword(password, password_2)
       const user = await User.create({
         username: username,
@@ -37,7 +39,7 @@ export default class UserController {
       ctx.auth.use('api').logout()
       ctx.response.ok({ message: 'user is deconnected' })
     } else {
-      ctx.response.badRequest({ message: 'failed' })
+      ctx.response.unauthorized({ message: 'failed' })
     }
   }
 }
