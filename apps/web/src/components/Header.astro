@@ -1,0 +1,13 @@
+---
+import {Image} from 'astro:assets'
+import profil from "../assets/logo.svg"
+import {center} from "../../styled-system/patterns"
+import {css} from "../../styled-system/css"
+---
+
+<header className={center()}>
+    <Image src={profil} 
+    alt="Hey"
+    className={css({w: 100})}/>
+    
+<header />

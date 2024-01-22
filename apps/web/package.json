@@ -1,8 +1,9 @@
 {
-  "name": "apps-web",
+  "name": "web",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
@@ -10,6 +11,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.0.8"
+    "@astrojs/check": "^0.4.1",
+    "astro": "^4.2.1",
+    "typescript": "^5.3.3"
   }
 }
