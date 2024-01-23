@@ -1,12 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import {css} from '../../styled-system/css'
+import {center, box, flex} from '../../styled-system/patterns'
 ---
 
 <Layout>
 	<main>
-	    <p class={css({fontWeight: 'bold', color: 'red.300'})}>
-            test merde
-        </p>
+        <center>
+            <p class={css({fontWeight:'bold',
+                        color: 'white',
+                        mt: '1.2%'})}>
+                Dar_rius
+            </p>
+            <p class={css({color: '#ECF0F1', mt:'1.2%', mb:'1.5%'})}>
+            I'm a software engineer and I'd like to <br/> share my latest discoveries with you.
+            </p>
+            <div class={
+                flex({direction: 'row', 
+                justify:'center'})}>
+                <a href="" class={css({color:'white', mr: '5%'})}>
+                    Github
+                </a>
+                <a href="" class={css({color:'white'})}>
+                    Linkedin
+                </a>
+                <a href="" class={css({color:'white', ml: '5%'})}>
+                    Twitter
+                </a>
+            </div>
+        </center>
 	</main>
 </Layout>
