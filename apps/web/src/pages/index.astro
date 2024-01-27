@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import {css} from '../../styled-system/css'
 import {center, box, flex} from '../../styled-system/patterns'
+import ListBlog from '../components/ListBlog.astro'
 ---
 
 <Layout>
 	<main>
-        <center>
+        <center class={css({mb: '6%'})}>
             <p class={css({fontWeight:'bold',
                         color: 'white',
                         mt: '1.2%'})}>
@@ -18,16 +19,17 @@ import {center, box, flex} from '../../styled-system/patterns'
             <div class={
                 flex({direction: 'row', 
                 justify:'center'})}>
-                <a href="" class={css({color:'white', mr: '5%'})}>
+                <a href="" class={css({color:'#B0B0B0', mr: '5%'})}>
                     Github
                 </a>
-                <a href="" class={css({color:'white'})}>
+                <a href="" class={css({color:'#B0B0B0'})}>
                     Linkedin
                 </a>
-                <a href="" class={css({color:'white', ml: '5%'})}>
+                <a href="" class={css({color:'#B0B0B0', ml: '5%'})}>
                     Twitter
                 </a>
             </div>
         </center>
+        <ListBlog/>
 	</main>
 </Layout>

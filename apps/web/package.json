@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "prepare": "panda codegen",
+    "panda": "panda -w",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
