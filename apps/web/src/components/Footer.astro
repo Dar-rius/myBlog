@@ -1,0 +1,21 @@
+---
+import {css} from '../../styled-system/css'
+import {flex} from '../../styled-system/patterns'
+---
+
+<footer class={flex({direction: 'row', 
+                    justifyContent: 'center',
+                    my: '8.5%'
+                })}>
+    <div class={css({textAlign:'center', px:'4%'})}>
+        <p class={css({color:'white', mb:'5%'})}>Dar_rius</p>
+        <p class={css({color:'#B0B0B0', mb:'5%'})}>Fullstack developer</p>
+        <p class={css({color:'#B0B0B0'})}>I code to build something </br> amazing</p>
+    </div>
+
+    <div class={css({textAlign:'center', px:'4%', display:'flex', flexDirection:'column'})}>
+        <p class={css({color:'white', mb:'10%'})}>Contact me</p>
+        <a href="" class={css({color:'#B0B0B0', mb:'10%'})}> Email</a>
+        <a href="" class={css({color:'#B0B0B0'})}>Linkedin</a>
+    </div>
+</footer>

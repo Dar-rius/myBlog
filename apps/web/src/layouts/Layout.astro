@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro"
+import Last from "../components/Last.astro"
 import {css} from "../../styled-system/css"
 import "../index.css"
 ---
@@ -14,8 +15,9 @@ import "../index.css"
 		<title>test</title>
 	</head>
 	<body class={css({bg: '#131418',
-                        mx:'5%'})}>
+                        mx:'8%'})}>
         <Header/>
 		<slot />
+        <Last/>
 	</body>
 </html>
