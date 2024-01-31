@@ -1,0 +1,49 @@
+---
+import {css} from '../../../../styled-system/css'
+import {center, flex} from '../../../../styled-system/patterns'
+import Layout from '../../../layouts/Layout.astro'
+
+const styleContainer = flex({
+        direction: 'column',
+        mx: '35%',
+        alignItems: 'flex-start',
+        my: '3%'
+        })
+
+const styleLabel = css({
+        fontSize: 21,
+        mb: 2
+        })
+---
+
+<Layout>
+    <center class={css({mb: '9.5%'})}>
+    <h2 class={css({
+            fontWeight: '500',
+            mt: '3%'
+            })}> 
+            Create new blog
+        </h2>
+
+        <form>
+            <div class={styleContainer}>
+                <label class={styleLabel}>Title</label>
+                <input placeholder="Enter your title of blog"
+                        type="text"/>
+            </div>
+            <div class={styleContainer}>
+                <label class={styleLabel}>Tags</label>
+                <input placeholder="Enter tags"
+                        type="text"/>
+            </div>
+            <div class={styleContainer}>
+                <label class={styleLabel}>Preface</label>
+                <input placeholder="Enter the preface"
+                        type="text"/>
+            </div>
+            <button>
+                Add content
+            </button>
+        </form>
+    </center>
+</Layout>
