@@ -3,6 +3,7 @@ import { defineConfig, defineGlobalStyles } from "@pandacss/dev";
 const globalCss = defineGlobalStyles({
   body: {
     background: "#131418",
+    color: "white",
   },
 });
 export default defineConfig({
@@ -17,7 +18,9 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      strictPropertyValues: true,
+    },
   },
   // The output directory for your css system
   outdir: "styled-system",
