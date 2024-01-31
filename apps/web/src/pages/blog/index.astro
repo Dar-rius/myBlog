@@ -1,8 +1,29 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import Footer from '../../components/Footer.astro'
+import {css} from '../../../styled-system/css'
+import {Content} from '../content/first.md'
 ---
 
 <Layout>
+    <div class={css({textAlign:'center', color:'white'})}>
+    <h1 class={css({fontSize:40, fontWeight:600, mt:10, mb: 5, px:'31%'})}>
+        The world of reverse
+    </h1>
+    <p class={css({fontSize:14, px:'31%'})}>
+        Proprietary code is often our enemy as open source developers. Breaking it
+        down and developing versions that are interoperable with their code is one of 
+         the great goals of the reverse engineering world.
+    </p>
+    </div>
+    <div class={css({ color:'white',
+                    mt:'5%',
+                    mx:'20%',
+                    lineHeight: 1.7,
+                    '& h2, h3, h4':{
+                        my: '5%'
+                    }})}>
+        <Content />
+    </div>
     <Footer/>
 </Layout>

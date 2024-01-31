@@ -1,5 +1,10 @@
-import { defineConfig } from "@pandacss/dev";
+import { defineConfig, defineGlobalStyles } from "@pandacss/dev";
 
+const globalCss = defineGlobalStyles({
+  body: {
+    background: "#131418",
+  },
+});
 export default defineConfig({
   // Whether to use css reset
   preflight: true,
@@ -14,7 +19,9 @@ export default defineConfig({
   theme: {
     extend: {},
   },
-
   // The output directory for your css system
   outdir: "styled-system",
+
+  // global style
+  globalCss,
 });
