@@ -3,6 +3,26 @@ import Layout from '../../layouts/Layout.astro'
 import Footer from '../../components/Footer.astro'
 import {css} from '../../../styled-system/css'
 import {Content} from '../content/first.md'
+
+const styleMD = css({ color:'white',
+                    mt:'4.5%',
+                    mx:'20%',
+                    lineHeight: 1.7,
+                    fontSize: 17.5,
+                    '& h2, h3, h4':{
+                        my: '4%',
+                    },
+                    '& img': {
+                        display:'block',
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        width:'80%',
+                        mb: '5%'
+                    },
+                    '& a':{
+                        color: '#BB8FCE',
+                    }
+                    })
 ---
 
 <Layout>
@@ -16,13 +36,7 @@ import {Content} from '../content/first.md'
          the great goals of the reverse engineering world.
     </p>
     </div>
-    <div class={css({ color:'white',
-                    mt:'5%',
-                    mx:'20%',
-                    lineHeight: 1.7,
-                    '& h2, h3, h4':{
-                        my: '5%'
-                    }})}>
+    <div class={styleMD}>
         <Content />
     </div>
     <Footer/>
