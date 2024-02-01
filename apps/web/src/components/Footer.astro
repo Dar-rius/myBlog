@@ -8,14 +8,41 @@ import {flex} from '../../styled-system/patterns'
                     my: '8%'
                 })}>
     <div class={css({textAlign:'center', px:'4%'})}>
-        <p class={css({color:'white', mb:'5%'})}>Dar_rius</p>
-        <p class={css({color:'#B0B0B0', mb:'5%'})}>Fullstack developer</p>
-        <p class={css({color:'#B0B0B0'})}>I code to build something </br> amazing</p>
+        <p class={css({color:'white', mb:'5%',
+            fontSize: '17',})}>Dar_rius</p>
+        <p class={css({color:'#B0B0B0', mb:'5%',
+            fontSize: '16.5',})}>Fullstack developer</p>
+        <p class={css({color:'#B0B0B0',
+            fontSize: '16.5',})}>I code to build something </br> amazing</p>
     </div>
 
     <div class={css({textAlign:'center', px:'4%', display:'flex', flexDirection:'column'})}>
-        <p class={css({color:'white', mb:'10%'})}>Contact me</p>
-        <a href="" class={css({color:'#B0B0B0', mb:'10%'})}> Email</a>
-        <a href="" class={css({color:'#B0B0B0'})}>Linkedin</a>
+        <p class={css({color:'white', mb:'10%', fontSize:'17'})}>Contact me</p>
+        <a href="mailto:mohamedtine17@gmail.com" target="_blank" 
+            class={css({color:'#B0B0B0', 
+            mb:'10%', 
+            transition: 'all',
+            transitionTimingFunction: 'ease-out',
+            transitionDelay: '.2s',
+            fontSize: '16.5',
+            _hover:{
+                color: 'white'
+            } })}> 
+            Email
+         </a>
+        
+        <a href="https://www.linkedin.com/in/mohamed-tine-515950214/" 
+            target="_blank"
+            class={css({color:'#B0B0B0',
+            fontSize: '16.5',
+            transition: 'all',
+            transitionTimingFunction: 'ease-out',
+            transitionDelay: '.2s',
+            _hover:{
+                color: 'white'
+            }
+            })}>
+            Linkedin
+        </a>
     </div>
 </footer>

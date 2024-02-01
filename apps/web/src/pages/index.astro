@@ -19,13 +19,38 @@ import ListBlog from '../components/ListBlog.astro'
             <div class={
                 flex({direction: 'row', 
                 justify:'center'})}>
-                <a href="" class={css({color:'#B0B0B0', mr: '5%'})}>
+                <a href="https://github.com/Dar-rius" target="_blank" 
+                class={css({color:'#B0B0B0',
+                mr: '5%', 
+                transition: 'all',
+                transitionTimingFunction: 'ease-out',
+                transitionDelay: '.2s',
+                _hover:{
+                    color: 'white'
+                }   
+                })}>
                     Github
                 </a>
-                <a href="" class={css({color:'#B0B0B0'})}>
+                <a href="https://www.linkedin.com/in/mohamed-tine-515950214/" target="_blank" 
+                class={css({color:'#B0B0B0',
+                transition: 'all',
+                transitionTimingFunction: 'ease-out',
+                transitionDelay: '.2s',
+                _hover:{
+                    color: 'white'
+                }
+                })}>
                     Linkedin
                 </a>
-                <a href="" class={css({color:'#B0B0B0', ml: '5%'})}>
+                <a href="https://twitter.com/Dar_rius_" target="_blank" 
+                class={css({color:'#B0B0B0',
+                            ml: '5%',
+                            transition: 'all',
+                            transitionTimingFunction: 'ease-out',
+                            transitionDelay: '.2s',
+                            _hover:{
+                                color: 'white'
+                            }})}>
                     Twitter
                 </a>
             </div>
