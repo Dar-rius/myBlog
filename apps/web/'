@@ -43,16 +43,12 @@ const styleLabel = css({
                         type="text"/>
             </div>
             <div> 
-            <button class={css({
-                    px: '3%',
-                    mr: '2%'
-                    })}>
+                <button>
                     Modify content
                 </button>
 
                 <button class={css({
-                    bg: '#E74C3C',
-                    ml: '2%'
+                    bg: '#E74C3C'
                         })}>
                     Delete
                 </button>
