@@ -1,0 +1,21 @@
+---
+import {css} from '../../styled-system/css'
+import {flex} from '../../styled-system/patterns'
+
+const linkStyle = css({
+    ml: '2%',
+    color: '#B0B0B0',
+    fontSize: 18
+        })
+---
+
+<header class={flex({
+        directon: 'row',
+        justifyContent: 'end',
+        my: 10,
+        mb: 17
+        })}>
+    <a href="" class={linkStyle}>Home</a>
+    <a href="" class={linkStyle}>New account</a>
+    <a href="" class={linkStyle}>Edit</a>
+</header>

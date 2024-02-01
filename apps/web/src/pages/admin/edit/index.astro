@@ -1,8 +1,7 @@
 ---
 import {css} from '../../../../styled-system/css'
 import {center, flex} from '../../../../styled-system/patterns'
-import Layout from '../../../layouts/Layout.astro'
-
+import AdminLayout from '../../../layouts/AdminLayout.astro'
 
 
 const styleLabel = css({
@@ -11,22 +10,32 @@ const styleLabel = css({
         })
 ---
 
-<Layout>
-    <center class={css({mb: '9.5%'})}>
+<AdminLayout>
+    <center>
     <h2 class={css({
             fontWeight: '500',
             mt: '3%'
             })}> 
             Edit one blog
         </h2>
-        <ul>
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
+        <ul class={css({
+            my: '3%',
+            mx: '20%',
+            '& li': {
+                fontSize: 22,
+                my: '3%'
+            }
+                })}>
+            <li> <a> Blog 1 </a> </li>
+            <li> <a> Blog 2 </a> </li>
+            <li> <a> Blog 3 </a> </li>
+            <li> <a> blog 4 </a> </li>
+            <li> <a> Blog 5 </a> </li>
+            <li> <a> Blog 1 </a> </li>
+            <li> <a> Blog 2 </a> </li>
+            <li> <a> Blog 3 </a> </li>
+            <li> <a> blog 4 </a> </li>
+            <li> <a> Blog 5 </a> </li>
         </ul>
     </center>
-</Layout>
+</AdminLayout>

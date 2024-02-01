@@ -1,7 +1,7 @@
 ---
 import {css} from '../../../../../styled-system/css'
 import {center, flex} from '../../../../../styled-system/patterns'
-import Layout from '../../../../layouts/Layout.astro'
+import AdminLayout from '../../../../layouts/AdminLayout.astro'
 
 const styleContainer = flex({
         direction: 'column',
@@ -16,8 +16,8 @@ const styleLabel = css({
         })
 ---
 
-<Layout>
-    <center class={css({mb: '9.5%'})}>
+<AdminLayout>
+    <center>
     <h2 class={css({
             fontWeight: '500',
             mt: '3%'
@@ -36,4 +36,4 @@ const styleLabel = css({
             </button>
         </form>
     </center>
-</Layout>
+</AdminLayout>
