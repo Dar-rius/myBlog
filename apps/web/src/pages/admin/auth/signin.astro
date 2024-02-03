@@ -2,7 +2,25 @@
 import {css} from '../../../../styled-system/css'
 import {center, flex} from '../../../../styled-system/patterns'
 import Layout from '../../../layouts/Layout.astro'
+import {request, response} from undici
+import {useRef} from 'react'
 
+// variable
+const email = useRef(
+const password = useRef()
+
+const data = {
+    email: email.current,
+    password: password.current,
+}
+
+async function Submit(){
+    await request(`http://localhost:3333/json`,
+    { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({data}) }
+  )  
+}
+
+// styles
 const styleContainer = flex({
         direction: 'column',
         mx: '35%',
@@ -29,12 +47,18 @@ const styleLabel = css({
             <div class={styleContainer}>
                 <label class={styleLabel}>Adress mail</label>
                 <input placeholder="Enter your email"
-                        type="email"/>
+                        type="email"
+                        onChange={
+                            (e) => (email.current = e.target.value)
+                        }/>
             </div>
             <div class={styleContainer}>
                 <label class={styleLabel}>Password</label>
                 <input placeholder="Enter your password"
-                        type="password"/>
+                        type="password"
+                        onChange={
+                            (e) => (password.current = e.target.value)
+                        }/>
             </div>
             <button>
                 Sign in
