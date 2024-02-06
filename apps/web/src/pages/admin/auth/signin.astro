@@ -2,16 +2,16 @@
 import {css} from '../../../../styled-system/css'
 import {center, flex} from '../../../../styled-system/patterns'
 import Layout from '../../../layouts/Layout.astro'
-import {request, response} from undici
-import {useRef} from 'react'
+import {request, response} from 'undici'
+import {useState} from 'react'
 
 // variable
-const email = useRef(
-const password = useRef()
+const [email, setEmail] = useState('')
+const [password, setPassword] = useState('')
 
 const data = {
-    email: email.current,
-    password: password.current,
+    email: email,
+    password: password
 }
 
 async function Submit(){
@@ -49,7 +49,7 @@ const styleLabel = css({
                 <input placeholder="Enter your email"
                         type="email"
                         onChange={
-                            (e) => (email.current = e.target.value)
+                            (e) => (setEmail(e.target.value))
                         }/>
             </div>
             <div class={styleContainer}>
@@ -57,7 +57,7 @@ const styleLabel = css({
                 <input placeholder="Enter your password"
                         type="password"
                         onChange={
-                            (e) => (password.current = e.target.value)
+                            (e) => (setPassword(e.target.value))
                         }/>
             </div>
             <button>
