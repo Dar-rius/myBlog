@@ -2,19 +2,7 @@
 import {css} from '../../../../styled-system/css'
 import {center, flex} from '../../../../styled-system/patterns'
 import AdminLayout from '../../../layouts/AdminLayout.astro'
-
-
-const styleContainer = flex({
-        direction: 'column',
-        mx: '35%',
-        alignItems: 'flex-start',
-        my: '3%'
-        })
-
-const styleLabel = css({
-        fontSize: 21,
-        mb: 2
-        })
+import EditFirst from '../../../components/admin/EditFirst.tsx'
 ---
 
 <AdminLayout>
@@ -25,38 +13,6 @@ const styleLabel = css({
             })}> 
             Modify your blog
         </h2>
-
-        <form>
-            <div class={styleContainer}>
-                <label class={styleLabel}>Title</label>
-                <input placeholder="Enter your title of blog"
-                        type="text"/>
-            </div>
-            <div class={styleContainer}>
-                <label class={styleLabel}>Tags</label>
-                <input placeholder="Enter tags"
-                        type="text"/>
-            </div>
-            <div class={styleContainer}>
-                <label class={styleLabel}>Preface</label>
-                <input placeholder="Enter the preface"
-                        type="text"/>
-            </div>
-            <div> 
-            <button class={css({
-                    px: '3%',
-                    mr: '2%'
-                    })}>
-                    Modify content
-                </button>
-
-                <button class={css({
-                    bg: '#E74C3C',
-                    ml: '2%'
-                        })}>
-                    Delete
-                </button>
-            </div>
-        </form>
+        <EditFirst client:idle />
     </center>
 </AdminLayout>

@@ -2,6 +2,7 @@
 import {css} from '../../../../../styled-system/css'
 import {center, flex} from '../../../../../styled-system/patterns'
 import AdminLayout from '../../../../layouts/AdminLayout.astro'
+import EditSecond from '../../../../components/admin/EditSecond.tsx'
 
 const styleContainer = flex({
         direction: 'column',
@@ -23,17 +24,7 @@ const styleLabel = css({
             mt: '3%'
             })}> 
             Change content
-        </h2>
-
-        <form>
-            <div class={styleContainer}>
-                <label class={styleLabel}>Content</label>
-                <input placeholder="Enter your title of blog"
-                        type="file"/>
-            </div>
-            <button>
-                Confirm
-            </button>
-        </form>
+    </h2>
+    <EditSecond client:idle />
     </center>
 </AdminLayout>
