@@ -2,19 +2,7 @@
 import {css} from '../../../../styled-system/css'
 import {center, flex} from '../../../../styled-system/patterns'
 import AdminLayout from '../../../layouts/AdminLayout.astro'
-
-
-const styleContainer = flex({
-        direction: 'column',
-        mx: '35%',
-        alignItems: 'flex-start',
-        my: '3%'
-        })
-
-const styleLabel = css({
-        fontSize: 21,
-        mb: 2
-        })
+import ContentComponent from '../../../components/admin/ContentComponent.tsx'
 ---
 
 <AdminLayout>
@@ -25,16 +13,6 @@ const styleLabel = css({
             })}> 
             Add content
         </h2>
-
-        <form>
-            <div class={styleContainer}>
-                <label class={styleLabel}>Content</label>
-                <input placeholder="Enter your title of blog"
-                        type="file"/>
-            </div>
-            <button>
-                Create
-            </button>
-        </form>
+    <ContentComponent client:idle />
     </center>
 </AdminLayout>

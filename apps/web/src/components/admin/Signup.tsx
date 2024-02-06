@@ -20,11 +20,11 @@ export default function SignupComponent() {
         password_2: password_2.current,
       };
       console.log(data);
-      //await request(`http://localhost:3333/`, {
-      //  method: "POST",
-      // headers: { "content-type": "application/json" },
-      // body: JSON.stringify({ data }),
-      //});
+      await request(`http://localhost:3333/`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ data }),
+      });
     } catch (err) {
       console.error(err);
     }
