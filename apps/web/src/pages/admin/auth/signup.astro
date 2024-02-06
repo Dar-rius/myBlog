@@ -1,54 +1,8 @@
 ---
-import {css} from '../../../../styled-system/css'
-import {center, flex} from '../../../../styled-system/patterns'
 import Layout from '../../../layouts/Layout.astro'
-
-const styleContainer = flex({
-        direction: 'column',
-        mx: '35%',
-        alignItems: 'flex-start',
-        my: '3%'
-        })
-
-const styleLabel = css({
-        fontSize: 21,
-        mb: 2
-        })
+import SignupComponent from '../../../components/admin/Signup.tsx'
 ---
 
 <Layout>
-    <center class={css({mb: '7%'})}>
-    <h2 class={css({
-            fontWeight: '500',
-            mt: '3%'
-            })}> 
-            Sign up
-        </h2>
-
-        <form>
-            <div class={styleContainer}>
-                <label class={styleLabel}>Username</label>
-                <input placeholder="Enter your username"
-                        type="text"/>
-            </div>
-            <div class={styleContainer}>
-                <label class={styleLabel}>Adress mail</label>
-                <input placeholder="Enter your address mail"
-                        type="email"/>
-            </div>
-            <div class={styleContainer}>
-                <label class={styleLabel}>Password</label>
-                <input placeholder="Enter your password"
-                        type="password"/>
-            </div>
-            <div class={styleContainer}>
-                <label class={styleLabel}>Verify password</label>
-                <input placeholder="Enter again your password"
-                        type="password"/>
-            </div>
-            <button>
-                Sign up
-            </button>
-        </form>
-    </center>
+    <SignupComponent client:idle />
 </Layout>

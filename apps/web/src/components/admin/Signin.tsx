@@ -39,9 +39,9 @@ export default function SigninComponent() {
     mb: 2,
   });
   return (
-    <center class={css({ mb: "9.5%" })}>
+    <center className={css({ mb: "9.5%" })}>
       <h2
-        class={css({
+        className={css({
           fontWeight: "500",
           mt: "3%",
         })}
@@ -50,8 +50,8 @@ export default function SigninComponent() {
       </h2>
 
       <form method="post" onSubmit={handleSubmit} id="form1">
-        <div class={styleContainer}>
-          <p class={styleLabel}>Adress mail</p>
+        <div className={styleContainer}>
+          <p className={styleLabel}>Adress mail</p>
           <input
             placeholder="Enter your email"
             type="email"
@@ -59,8 +59,8 @@ export default function SigninComponent() {
             onChange={(e) => (email.current = e.target.value)}
           />
         </div>
-        <div class={styleContainer}>
-          <p class={styleLabel}>Password</p>
+        <div className={styleContainer}>
+          <p className={styleLabel}>Password</p>
           <input
             placeholder="Enter your password"
             type="password"
