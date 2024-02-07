@@ -1,29 +1,23 @@
 import { css } from "../../../styled-system/css";
 import { center, flex } from "../../../styled-system/patterns";
-import { request, response } from "undici";
+import { fetch, response } from "undici";
 import React, { useRef } from "react";
+import axios from "axios";
 
 export default function SigninComponent() {
   // variable
   let email = useRef("");
   let password = useRef("");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    try {
-      const data = {
+    axios
+      .post(`http://127.0.0.1:3333/signin`, {
         email: email.current,
         password: password.current,
-      };
-      console.log(data);
-      await request(`http://localhost:3333/json`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ data }),
-      });
-    } catch (err) {
-      console.error(err);
-    }
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err.response));
   }
 
   // styles
@@ -49,7 +43,7 @@ export default function SigninComponent() {
         Sign in
       </h2>
 
-      <form method="post" onSubmit={handleSubmit} id="form1">
+      <form onSubmit={handleSubmit} id="form1">
         <div className={styleContainer}>
           <p className={styleLabel}>Adress mail</p>
           <input
