@@ -3,7 +3,7 @@ import Route from '@ioc:Adonis/Core/Route'
 // Route group for User
 Route.group(() => {
   Route.post('/signin', 'UserController.login'),
-    Route.post('/signup', 'UserController.register'),
+    Route.post('/signup', 'UserController.register').middleware('auth:api'),
     Route.get('/logout', 'UserController.logout').middleware('auth:api')
 }).namespace('App/Controllers')
 

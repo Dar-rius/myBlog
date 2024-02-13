@@ -1,6 +1,5 @@
 import { css } from "../../../styled-system/css";
 import { center, flex } from "../../../styled-system/patterns";
-import { fetch, response } from "undici";
 import React, { useRef } from "react";
 import axios from "axios";
 
@@ -12,11 +11,18 @@ export default function SigninComponent() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     axios
-      .post(`http://127.0.0.1:3333/signin`, {
-        email: email.current,
-        password: password.current,
+      .post(
+        `http://127.0.0.1:3333/signin`,
+        {
+          email: email.current,
+          password: password.current,
+        },
+        { withCredentials: true },
+      )
+      .then((res) => {
+        console.log(res.data);
+        sessionStorage.setItem("token", res.data.token);
       })
-      .then((res) => console.log(res))
       .catch((err) => console.error(err.response));
   }
 

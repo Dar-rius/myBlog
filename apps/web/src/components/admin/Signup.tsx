@@ -1,33 +1,44 @@
 import { css } from "../../../styled-system/css";
 import { center, flex } from "../../../styled-system/patterns";
 import React, { useRef } from "react";
-import { request, response } from "undici";
+import axios from "axios";
 
 export default function SignupComponent() {
   // variable
   let username = useRef("");
   let password = useRef("");
   let email = useRef("");
-  let password_2 = useRef("");
+  let password2 = useRef("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    try {
-      const data = {
-        username: username.current,
-        email: email.current,
-        password: password.current,
-        password_2: password_2.current,
-      };
-      console.log(data);
-      await request(`http://localhost:3333/`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ data }),
+    const token = sessionStorage.getItem("token");
+    await axios
+      .post(
+        `http://127.0.0.1:3333/signup`,
+        {
+          username: username.current,
+          email: email.current,
+          password: password.current,
+          password2: password2.current,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      )
+      .then((res) => console.log(res.data))
+      .catch((error) => {
+        if (error.response) {
+          // La requête a été faite, mais le serveur a répondu avec un code d'erreur
+          console.error("Erreur serveur:", error.response.data);
+        } else if (error.request) {
+          // La requête a été faite, mais aucune réponse n'a été reçue
+          console.error("Aucune réponse du serveur");
+        } else {
+          // Une erreur s'est produite lors de la configuration de la requête
+          console.error("Erreur de configuration de la requête", error.message);
+        }
       });
-    } catch (err) {
-      console.error(err);
-    }
   }
 
   //style
@@ -53,7 +64,7 @@ export default function SignupComponent() {
         Sign up
       </h2>
 
-      <form method="post" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="form1">
         <div className={styleContainer}>
           <p className={styleLabel}>Username</p>
           <input
@@ -86,11 +97,13 @@ export default function SignupComponent() {
           <input
             placeholder="Enter again your password"
             type="password"
-            name="password_2"
-            onChange={(e) => (password_2.current = e.target.value)}
+            name="password2"
+            onChange={(e) => (password2.current = e.target.value)}
           />
         </div>
-        <button type="submit">Sign up</button>
+        <button type="submit" form="form1">
+          Sign up
+        </button>
       </form>
     </center>
   );

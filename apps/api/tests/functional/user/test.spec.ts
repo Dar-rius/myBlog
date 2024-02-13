@@ -13,7 +13,7 @@ test.group('User tests for the success', () => {
       password_2: '@32test32@',
     })
     response.assertStatus(200)
-    response.assertBody({ message: 'Success' })
+    response.assertBodyContains({ message: 'Success' })
   })
 
   //Test to logout user
@@ -30,6 +30,6 @@ test.group('User tests for the success', () => {
       password: '@32test32@',
     })
     response.assertStatus(200)
-    response.assertBody({ message: 'Success' })
+    response.assertBodyContains({ message: 'Success' })
   })
 })
