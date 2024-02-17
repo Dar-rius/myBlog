@@ -6,12 +6,17 @@ test.group('User tests for the success', () => {
 
   // test to create and log user
   test('create user and logged', async ({ client }) => {
-    const response = await client.post('/signup').json({
-      username: 'Alou',
-      email: 'alou@gmail.com',
-      password: '@32test32@',
-      password_2: '@32test32@',
-    })
+    const user = User.find(1)
+    const response = await client
+      .post('/signup')
+      .json({
+        username: 'Alou',
+        email: 'alou@gmail.com',
+        password: '@32test32@',
+        password2: '@32test32@',
+      })
+      .guard('api')
+      .loginAs(user)
     response.assertStatus(200)
     response.assertBodyContains({ message: 'Success' })
   })

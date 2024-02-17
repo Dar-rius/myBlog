@@ -17,7 +17,7 @@ export default function NewComponent() {
         preface: preface.current,
       };
       const token = sessionStorage.getItem("token");
-      await axios.post(`http://localhost:3333/json`, data, {
+      await axios.post(`http://localhost:3333/create-blog`, data, {
         headers: { authorization: `Bearer ${token}` },
       });
     } catch (err) {
