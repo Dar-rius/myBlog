@@ -7,6 +7,7 @@ export default function NewComponent() {
   let title = useRef("");
   let tags = useRef("");
   let preface = useRef("");
+  let content = useRef("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -15,6 +16,7 @@ export default function NewComponent() {
         title: title.current,
         tags: tags.current,
         preface: preface.current,
+        content: content.current,
       };
       const token = sessionStorage.getItem("token");
       await axios.post(`http://localhost:3333/create-blog`, data, {
@@ -64,6 +66,15 @@ export default function NewComponent() {
           type="text"
           name="preface"
           onChange={(e) => (preface.current = e.target.value)}
+        />
+      </div>
+      <div className={styleContainer}>
+        <p className={styleLabel}>Content</p>
+        <input
+          placeholder="Enter your title of blog"
+          type="file"
+          name="content"
+          onChange={(e) => (content.current = e.target.value)}
         />
       </div>
       <button type="submit">Add content</button>

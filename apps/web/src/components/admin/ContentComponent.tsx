@@ -35,15 +35,6 @@ export default function ContentComponent() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styleContainer}>
-        <p className={styleLabel}>Content</p>
-        <input
-          placeholder="Enter your title of blog"
-          type="file"
-          name="content"
-          onChange={(e) => (content.current = e.target.value)}
-        />
-      </div>
       <button type="submit">Create</button>
     </form>
   );
