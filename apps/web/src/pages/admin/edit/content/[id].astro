@@ -15,6 +15,8 @@ const styleLabel = css({
         fontSize: 21,
         mb: 2
         })
+
+const {id} = Astro.params
 ---
 
 <AdminLayout>
@@ -25,6 +27,6 @@ const styleLabel = css({
             })}> 
             Change content
     </h2>
-    <EditSecond client:idle />
+    <EditSecond id={id} client:idle />
     </center>
 </AdminLayout>

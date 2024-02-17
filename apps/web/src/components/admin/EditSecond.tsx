@@ -3,8 +3,10 @@ import { flex } from "../../../styled-system/patterns";
 import React, { useRef } from "react";
 import axios from "axios";
 
-export default function EditSecond() {
+export default function EditSecond(id: { id: number }) {
   let content = useRef("");
+  const _id = id.id;
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
@@ -13,7 +15,7 @@ export default function EditSecond() {
       };
       console.log(data);
       const token = sessionStorage.getItem("token");
-      await axios.post(`http://localhost:3333/json`, data, {
+      await axios.post(`http://localhost:3333/edit-blog-file/${_id}`, data, {
         headers: { authorization: `Bearer ${token}` },
       });
     } catch (err) {

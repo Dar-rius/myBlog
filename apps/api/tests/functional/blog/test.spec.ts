@@ -47,7 +47,7 @@ test.group('Blog test', () => {
     const user = User.find(1)
 
     const response = await client
-      .put('/edit-blog-metadata/1')
+      .put('/edit-blog-data/1')
       .fields({
         title: 'hoo merde',
         label: 'pass test',

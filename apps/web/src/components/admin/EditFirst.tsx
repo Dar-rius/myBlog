@@ -3,11 +3,12 @@ import { flex } from "../../../styled-system/patterns";
 import React, { useRef } from "react";
 import axios from "axios";
 
-export default function EditFirst() {
+export default function EditFirst(id: { id: number }) {
   // variable
   let title = useRef("");
   let tags = useRef("");
   let preface = useRef("");
+  const _id = id.id;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -19,7 +20,7 @@ export default function EditFirst() {
       };
       console.log(data);
       const token = sessionStorage.getItem("token");
-      await axios.post(`http://localhost:3333/json`, data, {
+      await axios.post(`http://localhost:3333/edit-blog-data/${_id}`, data, {
         headers: { authorization: `Bearer ${token}` },
       });
     } catch (err) {

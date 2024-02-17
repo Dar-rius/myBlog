@@ -3,6 +3,8 @@ import {css} from '../../../../styled-system/css'
 import {center, flex} from '../../../../styled-system/patterns'
 import AdminLayout from '../../../layouts/AdminLayout.astro'
 import EditFirst from '../../../components/admin/EditFirst.tsx'
+
+const {id} = Astro.params
 ---
 
 <AdminLayout>
@@ -13,6 +15,6 @@ import EditFirst from '../../../components/admin/EditFirst.tsx'
             })}> 
             Modify your blog
         </h2>
-        <EditFirst client:idle />
+        <EditFirst id={id} client:idle />
     </center>
 </AdminLayout>
