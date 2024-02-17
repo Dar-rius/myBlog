@@ -28,7 +28,7 @@ export default function SignupComponent() {
       )
       .then((res) => {
         console.log(res.data);
-        sessionStorage.setItem(res.data.token);
+        sessionStorage.setItem("token", res.data.token);
       })
       .catch((error) => {
         if (error.response) {

@@ -1,7 +1,7 @@
 import { css } from "../../../styled-system/css";
 import { flex } from "../../../styled-system/patterns";
-import { request, response } from "undici";
 import React, { useRef } from "react";
+import axios from "axios";
 
 export default function EditFirst() {
   // variable
@@ -18,11 +18,10 @@ export default function EditFirst() {
         preface: preface.current,
       };
       console.log(data);
-      //await request(`http://localhost:3333/json`, {
-      // method: "POST",
-      // headers: { "content-type": "application/json" },
-      // body: JSON.stringify({ data }),
-      //});
+      const token = sessionStorage.getItem("token");
+      await axios.post(`http://localhost:3333/json`, data, {
+        headers: { authorization: `Bearer ${token}` },
+      });
     } catch (err) {
       console.error(err);
     }
