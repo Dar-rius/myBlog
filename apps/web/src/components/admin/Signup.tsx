@@ -26,7 +26,10 @@ export default function SignupComponent() {
           headers: { Authorization: `Bearer ${token}` },
         },
       )
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data);
+        sessionStorage.setItem(res.data.token);
+      })
       .catch((error) => {
         if (error.response) {
           // La requête a été faite, mais le serveur a répondu avec un code d'erreur

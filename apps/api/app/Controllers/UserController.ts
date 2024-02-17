@@ -7,16 +7,17 @@ export default class UserController {
   // method to create and login user
   public async register(ctx: HttpContextContract) {
     const { username, email, password, password2 } = ctx.request.body()
-    console.log(username, email, password, password2)
+    console.log()
     try {
       await ctx.request.validate(UserCreateValidator)
       checkPassword(password, password2)
-      await User.create({
+      const user = await User.create({
         username: username,
         email: email,
         password: password,
       })
-      ctx.response.ok({ message: 'Success' })
+      const authUser = await ctx.auth.use('api').login(user)
+      ctx.response.ok({ message: 'Success', token: authUser.token })
     } catch {
       ctx.response.badRequest({ message: 'User not authentificated' })
     }
