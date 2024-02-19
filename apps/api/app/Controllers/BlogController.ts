@@ -35,7 +35,7 @@ export default class BlogController {
         title: title,
         label: label,
         preface: preface,
-        content: fileMK?.fileName,
+        content: fileMK?.filePath,
       })
       ctx.response.ok({ message: 'Success' })
     } catch {
