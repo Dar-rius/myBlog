@@ -1,26 +1,28 @@
 import { css } from "../../../styled-system/css";
 import { flex } from "../../../styled-system/patterns";
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
 
 export default function EditFirst(id: { id: number }) {
   // variable
-  let title = useRef("");
-  let tags = useRef("");
-  let preface = useRef("");
   const _id = id.id;
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3333/blog/${_id}`)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      const data = {
-        title: title.current,
-        tags: tags.current,
-        preface: preface.current,
-      };
       console.log(data);
       const token = sessionStorage.getItem("token");
-      await axios.post(`http://localhost:3333/edit-blog-data/${_id}`, data, {
+      await axios.put(`http://localhost:3333/edit-blog-data/${_id}`, data, {
         headers: { authorization: `Bearer ${token}` },
       });
     } catch (err) {
@@ -48,8 +50,8 @@ export default function EditFirst(id: { id: number }) {
           placeholder="Enter your title of blog"
           type="text"
           name="title"
-          value={title.current}
-          onChange={(e) => (title.current = e.target.value)}
+          defaultValue={data.title}
+          onChange={(e) => (data.title = e.target.value)}
         />
       </div>
       <div className={styleContainer}>
@@ -57,9 +59,9 @@ export default function EditFirst(id: { id: number }) {
         <input
           placeholder="Enter tags"
           type="text"
-          name="tags"
-          value={tags.current}
-          onChange={(e) => (tags.current = e.target.value)}
+          name="label;"
+          defaultValue={data.label}
+          onChange={(e) => (data.label = e.target.value)}
         />
       </div>
       <div className={styleContainer}>
@@ -68,8 +70,8 @@ export default function EditFirst(id: { id: number }) {
           placeholder="Enter the preface"
           type="text"
           name="preface"
-          value={preface.current}
-          onChange={(e) => (preface.current = e.target.value)}
+          defaultValue={data.preface}
+          onChange={(e) => (data.preface = e.target.value)}
         />
       </div>
       <div>

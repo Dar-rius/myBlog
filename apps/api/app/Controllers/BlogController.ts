@@ -47,6 +47,7 @@ export default class BlogController {
   public async updateMetaData(ctx: HttpContextContract) {
     const idBlog = ctx.request.param('id')
     const body = ctx.request.body()
+    console.log(body)
     try {
       const blog = await Blog.findOrFail(idBlog)
       blog.merge(body).save()

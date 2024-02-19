@@ -3,7 +3,12 @@ import {css} from '../../../../styled-system/css'
 import {center, flex} from '../../../../styled-system/patterns'
 import AdminLayout from '../../../layouts/AdminLayout.astro'
 
+const response = await fetch('http://127.0.0.1:3333/all-blog')
+                    .then((res) => res.json())
+                    .catch((err) => console.error(err))
+console.log(response)
 
+//style
 const styleLabel = css({
         fontSize: 21,
         mb: 2
@@ -18,6 +23,7 @@ const styleLabel = css({
             })}> 
             Edit one blog
         </h2>
+    {response.map(item => (
         <ul class={css({
             my: '3%',
             mx: '20%',
@@ -25,17 +31,9 @@ const styleLabel = css({
                 fontSize: 22,
                 my: '3%'
             }
-                })}>
-            <li> <a> Blog 1 </a> </li>
-            <li> <a> Blog 2 </a> </li>
-            <li> <a> Blog 3 </a> </li>
-            <li> <a> blog 4 </a> </li>
-            <li> <a> Blog 5 </a> </li>
-            <li> <a> Blog 1 </a> </li>
-            <li> <a> Blog 2 </a> </li>
-            <li> <a> Blog 3 </a> </li>
-            <li> <a> blog 4 </a> </li>
-            <li> <a> Blog 5 </a> </li>
+                })} key={item.id}>
+            <li> <a href=`./edit/${item.id}`> {item.title} </a> </li>
         </ul>
+    ))}
     </center>
 </AdminLayout>
