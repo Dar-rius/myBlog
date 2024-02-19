@@ -13,7 +13,6 @@ export function checkPassword(password_1: string, password_2: string): boolean {
 // Function to save file in folder uploads
 export async function saveFile(file: any) {
   if (file?.isValid) {
-    console.log(file)
     await file.move(Application.tmpPath('uploads'))
     return true
   } else {
@@ -23,7 +22,7 @@ export async function saveFile(file: any) {
 
 // Function to change file with same name
 export async function changeFile(file: any) {
-  if (file) {
+  if (file?.isValid) {
     await file.move(Application.tmpPath('uploads'))
     return true
   } else {

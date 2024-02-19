@@ -82,7 +82,7 @@ export default function EditFirst(id: { id: number }) {
           })}
           type="submit"
         >
-          Modify content
+          Modify
         </button>
 
         <button
@@ -94,6 +94,7 @@ export default function EditFirst(id: { id: number }) {
           Delete
         </button>
       </div>
+      <a href={`./content/${_id}`}>Go to change data</a>
     </form>
   );
 }

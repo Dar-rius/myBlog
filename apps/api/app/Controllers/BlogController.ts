@@ -64,7 +64,7 @@ export default class BlogController {
     try {
       const blog = await Blog.findOrFail(idBlog)
       await changeFile(fileMK)
-      blog.content = fileMK?.fileName
+      blog.content = fileMK?.filePath
       blog.save()
       ctx.response.ok({ message: 'Success' })
     } catch {
