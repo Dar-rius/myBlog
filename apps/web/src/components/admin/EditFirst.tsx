@@ -20,9 +20,20 @@ export default function EditFirst(id: { id: number }) {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      console.log(data);
       const token = sessionStorage.getItem("token");
       await axios.put(`http://localhost:3333/edit-blog-data/${_id}`, data, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function handleDelete(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    try {
+      const token = sessionStorage.getItem("token");
+      await axios.delete(`http://localhost:3333/delete-blog/${_id}`, {
         headers: { authorization: `Bearer ${token}` },
       });
     } catch (err) {
@@ -90,6 +101,7 @@ export default function EditFirst(id: { id: number }) {
             bg: "#E74C3C",
             ml: "2%",
           })}
+          onClick={handleDelete}
         >
           Delete
         </button>

@@ -16,6 +16,7 @@ export default class BlogController {
     try {
       const blog = await Blog.findOrFail(idBlog)
       blog.content = await Drive.getUrl(blog.content)
+      console.log(blog.content)
       ctx.response.ok(blog)
     } catch {
       ctx.response.badRequest({ message: "blog don't found" })
@@ -35,7 +36,7 @@ export default class BlogController {
         title: title,
         label: label,
         preface: preface,
-        content: fileMK?.filePath,
+        content: fileMK?.fileName,
       })
       ctx.response.ok({ message: 'Success' })
     } catch {
@@ -64,7 +65,7 @@ export default class BlogController {
     try {
       const blog = await Blog.findOrFail(idBlog)
       await changeFile(fileMK)
-      blog.content = fileMK?.filePath
+      blog.content = fileMK?.fileName
       blog.save()
       ctx.response.ok({ message: 'Success' })
     } catch {

@@ -1,146 +1,60 @@
 ---
 import  {flex, container, grid} from "../../styled-system/patterns"
 import {css} from "../../styled-system/css"
+
+const response = await fetch('http://127.0.0.1:3333/all-blog')
+                    .then((res) => res.json())
+                    .catch((err) => console.error(err))
+
+console.log(response)
+
 ---
 
 <div class={grid({ columns:'2',
                 color:'white',
                 justifyItems:'center',
                 })}>   
-    
-    <a href="/blog/" class={container({
-        mx: '16.5%',
-        py: '4%',
-        my: '7%',
-        bg: '#0E0E0E',
-        borderWidth: 1,
-        borderColor: '#2B334F',
-        borderRadius: 'md',
-        transition: 'all',
-        transitionTimingFunction: 'ease-out',
-        transitionDelay: '.2s',
-        '& p':{
+
+    {response.map(item => (
+        <a href={`/blog/${item.id}`} class={container({
+            mx: '16.5%',
+            py: '4%',
+            my: '7%',
+            bg: '#0E0E0E',
+            borderWidth: 1,
+            borderColor: '#2B334F',
+            borderRadius: 'md',
             transition: 'all',
             transitionTimingFunction: 'ease-out',
             transitionDelay: '.2s',
-        },
-        _hover:{
-            borderWidth: 1.5,
-            borderColor: '#72457B',
             '& p':{
-                color: '#EAE1E1'
+                transition: 'all',
+                transitionTimingFunction: 'ease-out',
+                transitionDelay: '.2s',
             },
-        }
-        })}>
-        <p class={css({
-            mb: '5%',
-            textAlign:'center',
-            color: '#EAE1E1'
-        })}>January, 9, 2024</p>
-        <h2 class={css({fontSize:'26',
-                        fontWeight:'600',
-                        mb: '5%',
-                        textAlign:'center'
-                        })}>
-                        The world of reverse
-        </h2>
-        <p class={css({color:'#B0B0B0'})}>
-            Proprietary code is often our enemy as open source developers.
-            Breaking it down and developing versions that are interoperable
-            with their code is one of the great goals of the reverse engineering world.
-        </p>
-    </a>
-
-     
-    <a href="/blog/" class={container({
-        mx: '16.5%',
-        py: '4%',
-        my: '7%',
-        bg: '#0E0E0E',
-        borderWidth: 1,
-        borderColor: '#2B334F',
-        borderRadius: 'md',
-        transition: 'all',
-        transitionTimingFunction: 'ease-out',
-        transitionDelay: '.2s',
-        '& p':{
-            transition: 'all',
-            transitionTimingFunction: 'ease-out',
-            transitionDelay: '.2s',
-        },
-        _hover:{
-            borderWidth: 1.5,
-            borderColor: '#72457B',
-            '& p':{
+            _hover:{
+                borderWidth: 1.5,
+                borderColor: '#72457B',
+                '& p':{
+                    color: '#EAE1E1'
+                },
+            }
+            })}>
+            <p class={css({
+                mb: '5%',
+                textAlign:'center',
                 color: '#EAE1E1'
-            },
-        }
-        })}>
-        <p class={css({
-            mb: '5%',
-            textAlign:'center',
-            color: '#EAE1E1'
-        })}>January, 9, 2024</p>
-        <h2 class={css({fontSize:'26',
-                        fontWeight:'600',
-                        mb: '5%',
-                        textAlign:'center'
-                        })}>
-                        The world of reverse
-        </h2>
-        <p class={css({color:'#B0B0B0'})}>
-            Proprietary code is often our enemy as open source developers.
-            Breaking it down and developing versions that are interoperable
-            with their code is one of the great goals of the reverse engineering world.
-        </p>
-    </a>
-
-    <a href="" class={container({
-        textAlign:'center',
-        mx: '16.5%',
-        py: '2.1%',
-        my: '7%',
-        bg: '#0E0E0E',
-        borderRadius: 'md'
-        })}>
-        <p class={css({
-            mb: '5%'
-        })}>January, 9, 2024</p>
-        <h2 class={css({fontSize:'32',
-                        fontWeight:'600',
-                        mb: '5%'
-                        })}>
-                        The world of reverse
-        </h2>
-        <p>
-            Proprietary code is often our enemy as open source developers.
-            Breaking it down and developing versions that are interoperable
-            with their code is one of the great goals of the reverse engineering world.
-        </p>
-    </a>
-
-     
-    <a href="" class={container({
-        textAlign:'center',
-        mx: '16.5%',
-        py: '2.1%',
-        my: '7%',
-        bg: '#0E0E0E',
-        borderRadius: 'md'
-        })}>
-        <p class={css({
-            mb: '5%'
-        })}>January, 9, 2024</p>
-        <h2 class={css({fontSize:'32',
-                        fontWeight:'600',
-                        mb: '5%'
-                        })}>
-                        The world of reverse
-        </h2>
-        <p>
-            Proprietary code is often our enemy as open source developers.
-            Breaking it down and developing versions that are interoperable
-            with their code is one of the great goals of the reverse engineering world.
-        </p>
-    </a>
+            })}>{item.updated_at}</p>
+            <h2 class={css({fontSize:'26',
+                            fontWeight:'600',
+                            mb: '5%',
+                            textAlign:'center'
+                            })}>
+                            {item.title}
+            </h2>
+            <p class={css({color:'#B0B0B0'})}>
+                {item.preface}
+            </p>
+        </a>
+    ))}
 </div>
