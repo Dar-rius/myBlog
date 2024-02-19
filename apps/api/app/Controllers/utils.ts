@@ -12,11 +12,12 @@ export function checkPassword(password_1: string, password_2: string): boolean {
 
 // Function to save file in folder uploads
 export async function saveFile(file: any) {
-  if (file) {
+  if (file?.isValid) {
+    console.log(file)
     await file.move(Application.tmpPath('uploads'))
     return true
   } else {
-    return false
+    throw false
   }
 }
 

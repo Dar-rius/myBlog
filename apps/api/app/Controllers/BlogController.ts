@@ -25,8 +25,9 @@ export default class BlogController {
   // method to create one blog
   public async createBlog(ctx: HttpContextContract) {
     const { title, label, preface } = ctx.request.body()
-    const user = ctx.auth.user
     const fileMK = ctx.request.file('content')
+    const user = ctx.auth.user
+    //console.log(fileMK?.isValid)
     try {
       await saveFile(fileMK)
       await Blog.create({

@@ -4,26 +4,21 @@ import React, { useRef } from "react";
 import axios from "axios";
 
 export default function NewComponent() {
-  let title = useRef("");
-  let tags = useRef("");
-  let preface = useRef("");
-  let content = useRef("");
-
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    let form = new FormData(e.target);
+    form.set("title", form.get("title"));
+    form.set("label", form.get("label"));
+    form.set("preface", form.get("preface"));
+    form.set("content", form.get("content"));
+    console.log(form.get("content"));
     try {
-      const data = {
-        title: title.current,
-        tags: tags.current,
-        preface: preface.current,
-        content: content.current,
-      };
       const token = sessionStorage.getItem("token");
-      await axios.post(`http://localhost:3333/create-blog`, data, {
+      await axios.postForm(`http://localhost:3333/create-blog`, form, {
         headers: { authorization: `Bearer ${token}` },
       });
     } catch (err) {
-      console.error(err);
+      console.error(err.response);
     }
   }
   //style
@@ -40,33 +35,22 @@ export default function NewComponent() {
   });
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form method="post" onSubmit={handleSubmit} enctype="multipart/form-data">
       <div className={styleContainer}>
         <p className={styleLabel}>Title</p>
         <input
           placeholder="Enter your title of blog"
           type="text"
           name="title"
-          onChange={(e) => (title.current = e.target.value)}
         />
       </div>
       <div className={styleContainer}>
-        <p className={styleLabel}>Tags</p>
-        <input
-          placeholder="Enter tags"
-          type="text"
-          name="tags"
-          onChange={(e) => (title.current = e.target.value)}
-        />
+        <p className={styleLabel}>Labels</p>
+        <input placeholder="Enter labels" type="text" name="label" />
       </div>
       <div className={styleContainer}>
         <p className={styleLabel}>Preface</p>
-        <input
-          placeholder="Enter the preface"
-          type="text"
-          name="preface"
-          onChange={(e) => (preface.current = e.target.value)}
-        />
+        <input placeholder="Enter the preface" type="text" name="preface" />
       </div>
       <div className={styleContainer}>
         <p className={styleLabel}>Content</p>
@@ -74,7 +58,6 @@ export default function NewComponent() {
           placeholder="Enter your title of blog"
           type="file"
           name="content"
-          onChange={(e) => (content.current = e.target.value)}
         />
       </div>
       <button type="submit">Add content</button>
