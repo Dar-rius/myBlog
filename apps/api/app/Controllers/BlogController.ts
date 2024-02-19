@@ -16,8 +16,10 @@ export default class BlogController {
     try {
       const blog = await Blog.findOrFail(idBlog)
       blog.content = await Drive.getUrl(blog.content)
-      console.log(blog.content)
-      ctx.response.ok(blog)
+      const file = blog.content.slice(9)
+      const test = await Drive.get(file)
+      console.log(test)
+      ctx.response.ok(test.toString('ascii'))
     } catch {
       ctx.response.badRequest({ message: "blog don't found" })
     }
@@ -27,17 +29,17 @@ export default class BlogController {
   public async createBlog(ctx: HttpContextContract) {
     const { title, label, preface } = ctx.request.body()
     const fileMK = ctx.request.file('content')
-    const user = ctx.auth.user
-    //console.log(fileMK?.isValid)
+    //const user = ctx.auth.user
+    console.log(fileMK?.clientName)
     try {
       await saveFile(fileMK)
-      await Blog.create({
+      /*await Blog.create({
         author_id: user.id,
         title: title,
         label: label,
         preface: preface,
-        content: fileMK?.fileName,
-      })
+        content: fileMK?.clientName,
+      })*/
       ctx.response.ok({ message: 'Success' })
     } catch {
       ctx.response.badRequest({ message: 'Failed' })
@@ -65,7 +67,7 @@ export default class BlogController {
     try {
       const blog = await Blog.findOrFail(idBlog)
       await changeFile(fileMK)
-      blog.content = fileMK?.fileName
+      blog.content = fileMK?.clientName
       blog.save()
       ctx.response.ok({ message: 'Success' })
     } catch {

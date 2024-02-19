@@ -6,7 +6,6 @@ import AdminLayout from '../../../layouts/AdminLayout.astro'
 const response = await fetch('http://127.0.0.1:3333/all-blog')
                     .then((res) => res.json())
                     .catch((err) => console.error(err))
-console.log(response)
 
 //style
 const styleLabel = css({

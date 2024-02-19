@@ -5,7 +5,14 @@ import {css} from '../../../styled-system/css'
 import {Content} from '../content/first.md'
 
 export const prerender = false 
+const {id} = Astro.params
 
+const response = await fetch(`http://localhost:3333/blog/${id}`)
+            .then((res) => res)
+            .catch((err) => console.error(err))
+console.log(response)
+
+//style
 const styleMD = css({ color:'white',
                     mt:'4.5%',
                     mx:'20%',
@@ -26,11 +33,6 @@ const styleMD = css({ color:'white',
                     }
                     })
 
-const id = Astro.params
-const response = await fetch(`http://localhost:3333/blog/${id}`)
-            .then((res) => res.json())
-            .catch((err) => console.error(err))
-console.log(response)
 ---
 
 <Layout>
@@ -45,7 +47,6 @@ console.log(response)
     </p>
     </div>
     <div class={styleMD}>
-        <Content />
     </div>
     <Footer/>
 </Layout>
