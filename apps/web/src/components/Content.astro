@@ -1,0 +1,38 @@
+---
+import {css} from '../../styled-system/css'
+import axios from 'axios'
+
+//props
+const {data} = Astro.props
+
+const content = await axios.get(`http://localhost:3333${data}`)
+            .then((res) => res.data)
+            .catch((err) => console.error(err))
+
+console.log(content)
+
+//style
+const styleMD = css({ color:'white',
+                    mt:'4.5%',
+                    mx:'20%',
+                    lineHeight: 1.7,
+                    fontSize: 17.5,
+                    '& h2, h3, h4':{
+                        my: '4%',
+                    },
+                    '& img': {
+                        display:'block',
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        width:'78%',
+                        mb: '5%'
+                    },
+                    '& a':{
+                        color: '#BB8FCE',
+                    }
+                    })
+---
+
+<div class={styleMD}>
+    {content}
+</div>
