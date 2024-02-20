@@ -17,12 +17,10 @@ const response = await fetch(`http://localhost:3333/blog/${id}`)
 <Layout>
     <div class={css({textAlign:'center', color:'white'})}>
     <h1 class={css({fontSize:40, fontWeight:600, mt:10, mb: 5, px:'31%'})}>
-        The world of reverse
+        {response.title}
     </h1>
     <p class={css({fontSize:14, px:'31%'})}>
-        Proprietary code is often our enemy as open source developers. Breaking it
-        down and developing versions that are interoperable with their code is one of 
-         the great goals of the reverse engineering world.
+        {response.preface}
     </p>
     </div>
     <Content data={response.content}/>
