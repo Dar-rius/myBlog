@@ -1,15 +1,16 @@
 ---
 import {css} from '../../styled-system/css'
 import axios from 'axios'
+import { marked } from 'marked';
 
 //props
 const {data} = Astro.props
 
-const content = await axios.get(`http://localhost:3333${data}`)
-            .then((res) => res.data)
+const response = await fetch(`http://localhost:3333${data}`)
+            .then((res) => res.text())
             .catch((err) => console.error(err))
 
-console.log(content)
+const content = marked.parse(response);
 
 //style
 const styleMD = css({ color:'white',
@@ -34,5 +35,5 @@ const styleMD = css({ color:'white',
 ---
 
 <div class={styleMD}>
-    {content}
+    <article set:html={content} />
 </div>
