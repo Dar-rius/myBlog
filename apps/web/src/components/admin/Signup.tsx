@@ -24,10 +24,9 @@ export default function SignupComponent() {
         },
         {
           headers: { Authorization: `Bearer ${token}` },
-        },
+        }
       )
       .then((res) => {
-        console.log(res.data);
         sessionStorage.setItem("token", res.data.token);
       })
       .catch((error) => {

@@ -10,8 +10,6 @@ const {id} = Astro.params
 const response = await fetch(`http://localhost:3333/blog/${id}`)
             .then((res) => res.json())
             .catch((err) => console.error(err))
-
-//style
 ---
 
 <Layout>

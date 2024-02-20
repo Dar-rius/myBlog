@@ -10,7 +10,6 @@ export default function EditSecond(id: { id: number }) {
     e.preventDefault();
     let form = new FormData(e.target);
     form.set("content", form.get("content"));
-    console.log(form.get("content"));
     try {
       const token = sessionStorage.getItem("token");
       await axios.putForm(`http://localhost:3333/edit-blog-file/${_id}`, form, {

@@ -17,10 +17,9 @@ export default function SigninComponent() {
           email: email.current,
           password: password.current,
         },
-        { withCredentials: true },
+        { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
         sessionStorage.setItem("token", res.data.token);
       })
       .catch((err) => console.error(err.response));

@@ -27,7 +27,6 @@ export default class BlogController {
     const { title, label, preface } = ctx.request.body()
     const fileMK = ctx.request.file('content')
     const user = ctx.auth.user
-    console.log(fileMK?.clientName)
     try {
       await saveFile(fileMK)
       await Blog.create({
@@ -47,7 +46,6 @@ export default class BlogController {
   public async updateMetaData(ctx: HttpContextContract) {
     const idBlog = ctx.request.param('id')
     const body = ctx.request.body()
-    console.log(body)
     try {
       const blog = await Blog.findOrFail(idBlog)
       blog.merge(body).save()

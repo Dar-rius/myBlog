@@ -11,7 +11,6 @@ export default function NewComponent() {
     form.set("label", form.get("label"));
     form.set("preface", form.get("preface"));
     form.set("content", form.get("content"));
-    console.log(form.get("content"));
     try {
       const token = sessionStorage.getItem("token");
       await axios.postForm(`http://localhost:3333/create-blog`, form, {
