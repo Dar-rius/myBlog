@@ -1,5 +1,5 @@
 ---
-import  {flex, container, grid} from "../../styled-system/patterns"
+import  {flex, container, grid, wrap} from "../../styled-system/patterns"
 import {css} from "../../styled-system/css"
 
 const response  = await fetch('http://127.0.0.1:3333/all-blog')
@@ -13,6 +13,12 @@ const response  = await fetch('http://127.0.0.1:3333/all-blog')
                 })}>   
     {response.map(item => (
         <a href={`/blog/${item.id}`} class={container({
+            md :{
+                mx: '1%',
+            },
+            xl: {
+                mx: '17%'
+            },
             mx: '16.5%',
             py: '4%',
             my: '7%',
@@ -44,7 +50,7 @@ const response  = await fetch('http://127.0.0.1:3333/all-blog')
             <h2 class={css({fontSize:'26',
                             fontWeight:'600',
                             mb: '5%',
-                            textAlign:'center'
+                            textAlign:'center',
                             })}>
                             {item.title}
             </h2>
