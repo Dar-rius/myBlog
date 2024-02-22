@@ -5,6 +5,7 @@ import { marked } from 'marked';
 
 //props
 const {data} = Astro.props
+console.log(data)
 
 const response = await fetch(`http://localhost:3333${data}`)
             .then((res) => res.text())
@@ -15,32 +16,35 @@ const content = marked.parse(response);
 //style
 const styleMD = css({ color:'white',
                     mt:'4.5%',
-                    mx:{sms: '3%', lg:'20%', base:'15%' },
+                    mx:{sms: '3%', lg:'20%', base:'1%' },
                     lineHeight: '1.7',
                     fontSize: '17.5',
-                    md:{fontSize: '15'},
                     sms:{fontSize: '15'},
                     '& h2, h3, h4':{
                         my: '4%',
+                        fontWeight: 500
                     },
                     '& h2':{
-                        sms:{fontSize:'29'}
+                        fontSize:{base:25, sms:'29'}
                     },
                     '& h3':{
-                        sms:{fontSize:'23'}
+                        fontSize:{base:20, sms:'23'}
                     },
                     '& h4':{
-                        sms:{fontSize:'19'}
+                        fontSize:{base:16, sms:'19'}
                     },
                     '& img': {
                         display:'block',
                         marginLeft: 'auto',
                         marginRight: 'auto',
-                        width:'95%',
+                        width:'90%',
                         mb: '5%'
                     },
                     '& a':{
-                        color: '#BB8FCE',
+                        color: '#DBDDDE',
+                    },
+                    '& p':{
+                        color: '#CACED2'
                     }
                     })
 ---
