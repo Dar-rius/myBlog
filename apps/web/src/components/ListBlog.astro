@@ -13,8 +13,8 @@ const response  = await fetch('http://127.0.0.1:3333/all-blog')
                 })}>   
     {response.map(item => (
         <a href={`/blog/${item.id}`} class={container({
-            sssms:{
-                mx: '-10'  
+            ssms: {
+                mx: '-10%'  
             },
             sms: {
                 mx: '7%'  
@@ -29,7 +29,7 @@ const response  = await fetch('http://127.0.0.1:3333/all-blog')
                 mx: '12%'
             },
             'xl': {
-                mx: '40%'
+                mx: '20%'
             },
             mx: '16.5%',
             py: '4%',

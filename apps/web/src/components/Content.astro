@@ -15,17 +15,28 @@ const content = marked.parse(response);
 //style
 const styleMD = css({ color:'white',
                     mt:'4.5%',
-                    mx:'20%',
-                    lineHeight: 1.7,
-                    fontSize: 17.5,
+                    mx:{sms: '3%', lg:'20%', base:'15%' },
+                    lineHeight: '1.7',
+                    fontSize: '17.5',
+                    md:{fontSize: '15'},
+                    sms:{fontSize: '15'},
                     '& h2, h3, h4':{
                         my: '4%',
+                    },
+                    '& h2':{
+                        sms:{fontSize:'29'}
+                    },
+                    '& h3':{
+                        sms:{fontSize:'23'}
+                    },
+                    '& h4':{
+                        sms:{fontSize:'19'}
                     },
                     '& img': {
                         display:'block',
                         marginLeft: 'auto',
                         marginRight: 'auto',
-                        width:'78%',
+                        width:'95%',
                         mb: '5%'
                     },
                     '& a':{
