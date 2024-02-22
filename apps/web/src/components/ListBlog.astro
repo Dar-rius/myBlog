@@ -7,17 +7,29 @@ const response  = await fetch('http://127.0.0.1:3333/all-blog')
                     .catch((err) => console.error(err))
 ---
 
-<div class={grid({ columns:'2',
+<div class={grid({ columns:{sm:'1', md:'2'},
                 color:'white',
                 justifyItems:'center',
                 })}>   
     {response.map(item => (
         <a href={`/blog/${item.id}`} class={container({
-            md :{
-                mx: '1%',
+            sssms:{
+                mx: '-10'  
             },
-            xl: {
-                mx: '17%'
+            sms: {
+                mx: '7%'  
+            },
+            sm: {
+                mx: '15%'  
+            },
+            md :{
+                mx: '5%',
+            },
+            lg: {
+                mx: '12%'
+            },
+            'xl': {
+                mx: '40%'
             },
             mx: '16.5%',
             py: '4%',
@@ -45,16 +57,34 @@ const response  = await fetch('http://127.0.0.1:3333/all-blog')
             <p class={css({
                 mb: '5%',
                 textAlign:'center',
-                color: '#EAE1E1'
+                color: '#EAE1E1',
+                sms: {
+                    fontSize: '14' 
+                },
+                ssms: {
+                    fontSize: '12' 
+                },
             })}>{item.updated_at}</p>
             <h2 class={css({fontSize:'26',
                             fontWeight:'600',
                             mb: '5%',
                             textAlign:'center',
+                            sms: {
+                                fontSize: '24' 
+                            },
+                            ssms: {
+                                fontSize: '22' 
+                            },
                             })}>
                             {item.title}
             </h2>
-            <p class={css({color:'#B0B0B0'})}>
+            <p class={css({color:'#B0B0B0',
+                            sms: {
+                                fontSize: '14' 
+                            },
+                            ssms: {
+                                fontSize: '12' 
+                            },})}>
                 {item.preface}
             </p>
         </a>
