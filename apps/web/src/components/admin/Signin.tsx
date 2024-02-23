@@ -2,11 +2,13 @@ import { css } from "../../../styled-system/css";
 import { center, flex } from "../../../styled-system/patterns";
 import React, { useRef } from "react";
 import axios from "axios";
+import { url } from "../../utils.ts";
 
 export default function SigninComponent() {
   // variable
   let email = useRef("");
   let password = useRef("");
+  let message = useRef("");
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -21,8 +23,12 @@ export default function SigninComponent() {
       )
       .then((res) => {
         sessionStorage.setItem("token", res.data.token);
+        window.location = "http://localhost:4321/admin/edit";
       })
-      .catch((err) => console.error(err.response));
+      .catch((err) => {
+        console.error(err.response);
+        message.current = "Error in connexion";
+      });
   }
 
   // styles
@@ -67,6 +73,7 @@ export default function SigninComponent() {
             onChange={(e) => (password.current = e.target.value)}
           />
         </div>
+        <div>{message.current}</div>
         <button type="submit" form="form1">
           Sign in
         </button>
