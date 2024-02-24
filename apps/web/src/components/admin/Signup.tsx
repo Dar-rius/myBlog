@@ -2,6 +2,7 @@ import { css } from "../../../styled-system/css";
 import { center, flex } from "../../../styled-system/patterns";
 import React, { useRef } from "react";
 import axios from "axios";
+import { url } from "../../utils";
 
 export default function SignupComponent() {
   // variable
@@ -28,6 +29,7 @@ export default function SignupComponent() {
       )
       .then((res) => {
         sessionStorage.setItem("token", res.data.token);
+        window.location = `${url}/admin/edit`;
       })
       .catch((error) => {
         if (error.response) {

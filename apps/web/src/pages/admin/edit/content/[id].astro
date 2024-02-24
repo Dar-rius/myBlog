@@ -4,8 +4,11 @@ import {center, flex} from '../../../../../styled-system/patterns'
 import AdminLayout from '../../../../layouts/AdminLayout.astro'
 import EditSecond from '../../../../components/admin/EditSecond.tsx'
 
+//variable
+const {id} = Astro.params
 export const prerender = false
 
+//styles
 const styleContainer = flex({
         direction: 'column',
         mx: '35%',
@@ -17,9 +20,17 @@ const styleLabel = css({
         fontSize: 21,
         mb: 2
         })
-
-const {id} = Astro.params
 ---
+
+<script >
+    import {isLogged} from '../../../../utils.ts'
+    const token = sessionStorage.getItem('token')
+    if (!isLogged(token)){
+        window.location = `${url}/admin/auth/signin`
+
+    }
+</script>
+
 
 <AdminLayout>
     <center>

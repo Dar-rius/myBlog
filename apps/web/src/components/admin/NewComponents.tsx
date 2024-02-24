@@ -2,6 +2,7 @@ import { css } from "../../../styled-system/css";
 import { flex } from "../../../styled-system/patterns";
 import React, { useRef } from "react";
 import axios from "axios";
+import { url } from "../../utils";
 
 export default function NewComponent() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -16,6 +17,7 @@ export default function NewComponent() {
       await axios.postForm(`http://localhost:3333/create-blog`, form, {
         headers: { authorization: `Bearer ${token}` },
       });
+      window.location = `${url}/admin/edit`;
     } catch (err) {
       console.error(err.response);
     }

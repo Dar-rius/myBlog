@@ -2,6 +2,7 @@ import { css } from "../../../styled-system/css";
 import { flex } from "../../../styled-system/patterns";
 import React from "react";
 import axios from "axios";
+import { url } from "../../utils";
 
 export default function EditSecond(id: { id: number }) {
   const _id = id.id;
@@ -15,6 +16,7 @@ export default function EditSecond(id: { id: number }) {
       await axios.putForm(`http://localhost:3333/edit-blog-file/${_id}`, form, {
         headers: { authorization: `Bearer ${token}` },
       });
+      window.location = `${url}/admin/edit`;
     } catch (err) {
       console.error(err);
     }

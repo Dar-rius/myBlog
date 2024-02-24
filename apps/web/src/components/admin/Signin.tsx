@@ -2,7 +2,7 @@ import { css } from "../../../styled-system/css";
 import { center, flex } from "../../../styled-system/patterns";
 import React, { useRef } from "react";
 import axios from "axios";
-import { url } from "../../utils.ts";
+import { url } from "../../utils";
 
 export default function SigninComponent() {
   // variable
@@ -23,7 +23,7 @@ export default function SigninComponent() {
       )
       .then((res) => {
         sessionStorage.setItem("token", res.data.token);
-        window.location = "http://localhost:4321/admin/edit";
+        window.location = `${url}/admin/edit`;
       })
       .catch((err) => {
         console.error(err.response);

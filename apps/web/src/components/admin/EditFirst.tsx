@@ -2,6 +2,7 @@ import { css } from "../../../styled-system/css";
 import { flex } from "../../../styled-system/patterns";
 import React, { useRef, useEffect, useState } from "react";
 import axios from "axios";
+import { url } from "../../utils";
 
 export default function EditFirst(id: { id: number }) {
   // variable
@@ -24,6 +25,7 @@ export default function EditFirst(id: { id: number }) {
       await axios.put(`http://localhost:3333/edit-blog-data/${_id}`, data, {
         headers: { authorization: `Bearer ${token}` },
       });
+      window.location = `${url}/admin/edit`;
     } catch (err) {
       console.error(err);
     }
@@ -36,6 +38,7 @@ export default function EditFirst(id: { id: number }) {
       await axios.delete(`http://localhost:3333/delete-blog/${_id}`, {
         headers: { authorization: `Bearer ${token}` },
       });
+      window.location = "http://localhost:4321/admin/edit";
     } catch (err) {
       console.error(err);
     }

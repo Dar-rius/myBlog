@@ -4,10 +4,10 @@ import SigninComponent from '../../../components/admin/Signin.tsx'
 ---
 
 <script >
-    import {isLogged} from '../../../utils.ts'
+    import {isLogged, url} from '../../../utils.ts'
     const token = sessionStorage.getItem('token')
     if (isLogged(token)){
-        window.location = "http://localhost:4321/admin/edit"
+        window.location = `${url}/admin/edit`
     }
 </script>
 

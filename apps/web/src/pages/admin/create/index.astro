@@ -5,6 +5,15 @@ import AdminLayout from '../../../layouts/AdminLayout.astro'
 import NewComponent from '../../../components/admin/NewComponents.tsx'
 ---
 
+<script >
+    import {isLogged, url} from '../../../utils.ts'
+    const token = sessionStorage.getItem('token')
+    if (!isLogged(token)){
+        window.location = `${url}/admin/auth/signin`
+
+    }
+</script>
+
 <AdminLayout>
     <center>
         <h2 class={css({
