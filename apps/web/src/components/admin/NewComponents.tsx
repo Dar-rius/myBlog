@@ -1,10 +1,11 @@
 import { css } from "../../../styled-system/css";
 import { flex } from "../../../styled-system/patterns";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { url } from "../../utils";
 
 export default function NewComponent() {
+  const [message, setMessage] = useState("");
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     let form = new FormData(e.target);
@@ -19,6 +20,7 @@ export default function NewComponent() {
       });
       window.location = `${url}/admin/edit`;
     } catch (err) {
+      setMessage("A field is not entered correctly");
       console.error(err.response);
     }
   }
@@ -30,10 +32,7 @@ export default function NewComponent() {
     my: "3%",
   });
 
-  const styleLabel = css({
-    fontSize: 21,
-    mb: 2,
-  });
+  const styleLabel = css({ fontSize: 21, mb: 2 });
 
   return (
     <form method="post" onSubmit={handleSubmit} enctype="multipart/form-data">
@@ -43,15 +42,21 @@ export default function NewComponent() {
           placeholder="Enter your title of blog"
           type="text"
           name="title"
+          required
         />
       </div>
       <div className={styleContainer}>
         <p className={styleLabel}>Labels</p>
-        <input placeholder="Enter labels" type="text" name="label" />
+        <input placeholder="Enter labels" type="text" name="label" required />
       </div>
       <div className={styleContainer}>
         <p className={styleLabel}>Preface</p>
-        <input placeholder="Enter the preface" type="text" name="preface" />
+        <input
+          placeholder="Enter the preface"
+          type="text"
+          name="preface"
+          required
+        />
       </div>
       <div className={styleContainer}>
         <p className={styleLabel}>Content</p>
@@ -59,8 +64,10 @@ export default function NewComponent() {
           placeholder="Enter your title of blog"
           type="file"
           name="content"
+          required
         />
       </div>
+      <p className={css({ color: "red.300" })}>{message}</p>
       <button type="submit">Add content</button>
     </form>
   );

@@ -1,11 +1,12 @@
 import { css } from "../../../styled-system/css";
 import { flex } from "../../../styled-system/patterns";
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { url } from "../../utils";
 
 export default function EditSecond(id: { id: number }) {
   const _id = id.id;
+  const [message, setMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -18,6 +19,7 @@ export default function EditSecond(id: { id: number }) {
       });
       window.location = `${url}/admin/edit`;
     } catch (err) {
+      setMessage("A field is not entered correctly");
       console.error(err);
     }
   }
@@ -38,8 +40,14 @@ export default function EditSecond(id: { id: number }) {
     <form method="post" onSubmit={handleSubmit} enctype="multipart/form-data">
       <div className={styleContainer}>
         <p className={styleLabel}>Content</p>
-        <input placeholder="Select your file" type="file" name="content" />
+        <input
+          placeholder="Select your file"
+          type="file"
+          name="content"
+          required
+        />
       </div>
+      <p className={css({ color: "red.300" })}>{message}</p>
       <button type="submit">Confirm</button>
     </form>
   );

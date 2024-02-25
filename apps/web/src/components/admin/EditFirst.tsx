@@ -1,6 +1,6 @@
 import { css } from "../../../styled-system/css";
 import { flex } from "../../../styled-system/patterns";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { url } from "../../utils";
 
@@ -8,6 +8,7 @@ export default function EditFirst(id: { id: number }) {
   // variable
   const _id = id.id;
   const [data, setData] = useState({});
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     axios
@@ -27,6 +28,7 @@ export default function EditFirst(id: { id: number }) {
       });
       window.location = `${url}/admin/edit`;
     } catch (err) {
+      setMessage("A field is not entered correctly");
       console.error(err);
     }
   }
@@ -66,6 +68,7 @@ export default function EditFirst(id: { id: number }) {
           name="title"
           defaultValue={data.title}
           onChange={(e) => (data.title = e.target.value)}
+          required
         />
       </div>
       <div className={styleContainer}>
@@ -76,6 +79,7 @@ export default function EditFirst(id: { id: number }) {
           name="label;"
           defaultValue={data.label}
           onChange={(e) => (data.label = e.target.value)}
+          required
         />
       </div>
       <div className={styleContainer}>
@@ -86,8 +90,10 @@ export default function EditFirst(id: { id: number }) {
           name="preface"
           defaultValue={data.preface}
           onChange={(e) => (data.preface = e.target.value)}
+          required
         />
       </div>
+      <p className={css({ color: "red.300" })}>{message}</p>
       <div>
         <button
           className={css({
