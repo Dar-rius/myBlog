@@ -10,10 +10,11 @@ const response  = await fetch('http://127.0.0.1:3333/all-blog')
 <div class={grid({ columns:{base:'1', sm:'2'},
                 color:'white',
                 justifyItems:'center',
+                mx: '1%',
                 })}>   
     {response.map(item => (
         <a href={`/blog/${item.id}`} class={container({
-            width: {sm:'90%', base:'85%' },
+            width: {xl:'70%', sm:'90%', base:'85%' },
             py: '5%',
             my: '7%',
             bg: '#0E0E0E',
