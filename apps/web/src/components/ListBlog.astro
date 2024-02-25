@@ -7,32 +7,14 @@ const response  = await fetch('http://127.0.0.1:3333/all-blog')
                     .catch((err) => console.error(err))
 ---
 
-<div class={grid({ columns:{sm:'1', md:'2'},
+<div class={grid({ columns:{base:'1', sm:'2'},
                 color:'white',
                 justifyItems:'center',
                 })}>   
     {response.map(item => (
         <a href={`/blog/${item.id}`} class={container({
-            ssms: {
-                mx: '1%'  
-            },
-            sms: {
-                mx: '3%'  
-            },
-            sm: {
-                mx: '15%'  
-            },
-            md :{
-                mx: '5%',
-            },
-            lg: {
-                mx: '12%'
-            },
-            'xl': {
-                mx: '20%'
-            },
-            mx: '16.5%',
-            py: '4%',
+            width: {sm:'90%', base:'85%' },
+            py: '5%',
             my: '7%',
             bg: '#0E0E0E',
             borderWidth: 1,
@@ -62,7 +44,7 @@ const response  = await fetch('http://127.0.0.1:3333/all-blog')
                     fontSize: '14' 
                 },
                 ssms: {
-                    fontSize: '12' 
+                    fontSize: '10' 
                 },
             })}>{item.updated_at}</p>
             <h2 class={css({fontSize:'26',
@@ -70,10 +52,10 @@ const response  = await fetch('http://127.0.0.1:3333/all-blog')
                             mb: '5%',
                             textAlign:'center',
                             sms: {
-                                fontSize: '24' 
+                                fontSize: '22' 
                             },
                             ssms: {
-                                fontSize: '22' 
+                                fontSize: '18' 
                             },
                             })}>
                             {item.title}
