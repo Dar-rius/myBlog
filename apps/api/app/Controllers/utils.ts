@@ -21,8 +21,9 @@ export async function saveFile(file: any) {
 }
 
 // Function to change file with same name
-export async function changeFile(file: any) {
+export async function changeFile(file: any, fileExist: any) {
   if (file?.isValid) {
+    await Drive.delete(fileExist)
     await file.move(Application.tmpPath('uploads'))
     return true
   } else {

@@ -61,7 +61,7 @@ export default class BlogController {
     const fileMK = ctx.request.file('content')
     try {
       const blog = await Blog.findOrFail(idBlog)
-      await changeFile(fileMK)
+      await changeFile(fileMK, blog.content)
       blog.content = fileMK?.clientName
       blog.save()
       ctx.response.ok({ message: 'Success' })
