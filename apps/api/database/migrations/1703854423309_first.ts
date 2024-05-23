@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.string('username').notNullable()
       table.string('email').notNullable()
       table.string('password').notNullable()
-      table.date('created_at').defaultTo(this.now())
+      table.timestamp('created_at').notNullable().defaultTo(this.now())
     })
 
     this.schema.createTable(this.tableName_1, (table) => {
@@ -19,8 +19,8 @@ export default class extends BaseSchema {
       table.string('label').notNullable()
       table.string('preface', 200).notNullable()
       table.string('content').notNullable()
-      table.date('created_at').notNullable()
-      table.date('updated_at').defaultTo(this.now())
+      table.timestamp('created_at').notNullable()
+      table.timestamp('updated_at').notNullable().defaultTo(this.now())
     })
   }
 
